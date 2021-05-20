@@ -13,8 +13,11 @@ textarea{
   min-width: 30vw;
   max-height: 30vw;
   min-height: 15vw;
+  padding: 0.5vw;
 }
 
 .questions{
-  
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 2vw;
 }

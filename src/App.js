@@ -1,16 +1,15 @@
 import './App.css';
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 
 function App() {
 
-
-  const [input, setInput] = useState('')
-  const [isExisting, setIsExisting] = useState('false')
+  const [input, setInput] = useState('');
+  const [isExisting, setIsExisting] = useState('false');
   const [isLowercase, setIsLowercase] = useState('false');
-  const [isNumbers, setIsNumbers] = useState('false')
-  const [capitalWords, setCapitalWords] = useState('')
-  const [specChars, setSpecChars] = useState('')
-  const [switchedWords, setSwitchedWords] = useState('')
+  const [isNumbers, setIsNumbers] = useState('false');
+  const [capitalWords, setCapitalWords] = useState('none found');
+  const [specChars, setSpecChars] = useState('0');
+  const [switchedWords, setSwitchedWords] = useState('0');
 
 
  
@@ -20,7 +19,7 @@ function App() {
     const numbers = /[0-9]/g;
     const startsWithCapital = / ?([A-Z][\w+]*) ?/g
     const specialChars = /[\W]/g
-    const switchWords = /(\w+)\s(\w+)/
+    const switchWords = /\s(\w+)/g
     
     setInput(e.target.value);
 
@@ -29,24 +28,27 @@ function App() {
     setIsNumbers(numbers.test(input).toString());
 
 
-    var match = startsWithCapital.exec(input)
+    var match = startsWithCapital.exec(input);
 
     if(match) {
-      const name = match[1]
-      setCapitalWords(name)
+      const name = match[1];
+      setCapitalWords(name);
     } else {
-      setCapitalWords('none found')
-    }
+      setCapitalWords('none found');
+    };
 
     if(input.match(specialChars)){
       setSpecChars(input.match(specialChars).length);
     } else {
       setSpecChars(0)
-    }
+    };
 
-
-    setSwitchedWords(switchWords.test(input).toString())
-
+    if(input.match(switchWords)){
+      setSwitchedWords((input.match(switchWords).length+1).toString());
+    };
+    if(!input||input.length < 2){
+      setSwitchedWords('0');
+    };
   }
   
   return (
@@ -57,20 +59,32 @@ function App() {
       <div>
         <textarea value={input} onChange={Changed} type="text"></textarea>
 
-        <article className="questions">
-          Does this include uppercase?
-          <h1> {isExisting} </h1>
-          Does this include lowercase?
-          <h1> {isLowercase} </h1>
-          Does this include numbers?
-          <h1> {isNumbers} </h1>
+        <div className="questions">
+          <div>
+            Does this include uppercase?
+            <h1> {isExisting} </h1>
+          </div>
+          <div>
+            Does this include lowercase?
+            <h1> {isLowercase} </h1>
+          </div>
+          <div>
+            Does this include numbers?
+            <h1> {isNumbers} </h1>
+          </div>
+          <div>
           The first word starting with capital letter is:
           <h1> {capitalWords} </h1>
-          Number of special symbols:
-          <h1>{specChars}</h1>
-          Is there more than 2 words?
-          <h1>{switchedWords}</h1>
-        </article>
+          </div>
+          <div>
+            Number of special symbols:
+            <h1>{specChars}</h1>
+          </div>
+          <div>
+            Number of words:
+            <h1>{switchedWords}</h1>
+          </div>
+        </div>
       </div>
     </div>
   );
