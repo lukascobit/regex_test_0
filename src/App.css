@@ -1,7 +1,6 @@
 * {
   background-color: rgb(13, 32, 56);
   color: rgb(217, 224, 233);
-  /*text-decoration: underline 0.1vw solid;*/
   text-align: center;
 }
 textarea{
@@ -10,11 +9,12 @@ textarea{
   font-size: 1vw;
   text-decoration: none;
   background-color: rgb(42, 68, 85);
+  max-width: 50vw;
+  min-width: 30vw;
+  max-height: 30vw;
+  min-height: 15vw;
 }
-.submit{
-  width: 5vw;
-  height: 2vw;
-  background-color: rgb(199, 166, 230);
-  color: rgb(0, 0, 0);
-  text-decoration: none;
+
+.questions{
+  
 }
