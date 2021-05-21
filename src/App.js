@@ -17,9 +17,9 @@ function App() {
     const regex = /[A-Z]/g;
     const lowercase = /[a-z]/g;
     const numbers = /[0-9]/g;
-    const startsWithCapital = / ?([A-Z][\w+]*) ?/g
-    const specialChars = /[\W]/g
-    const switchWords = /\s(\w+)/g
+    const startsWithCapital = / ?([A-Z][\w+]*) ?/g;
+    const specialChars = /[\W]/g;
+    const switchWords = /\s(\w+)/g;
     
     setInput(e.target.value);
 
